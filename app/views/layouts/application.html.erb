@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Loja de camisetas</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= nav_bar brand: "Loja de Camisas", brand_link: root_url, reponsive: true do %>
+	<%= menu_group do %>
+		<%= menu_item "Home page", root_path %>
+		<%= drop_down "Products" do %>
+			<%= menu_item "List of products", "/products" %>
+			<%= menu_item "Add a new product", "/products/create" %>
+		<% end %>
+	<% end %>
+
+	<%= form_tag search_products_path, method: :get, class: "navbar-form navbar-right" do %>
+		<div class="form-group">
+			<%= text_field_tag :s, nil, class: "form-control" %>
+			<%= button_to "Search", nil, class: "btn btn-default" %>
+		</div>
+	<% end %>
+
+<% end %>
+
+<div class="container">
+	<%= yield %>
+</div><!-- div.container -->
+
+</body>
+</html>
