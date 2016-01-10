@@ -2,8 +2,19 @@
 	<h1>Create a new product</h1>	
 </div>
 
-<%= form_for Product.new, html: {class: "form"}, url: {action: "store"} do |f| %>
+<% if @product.errors.full_messages.size > 0 %>
+<div class="alert alert-danger" role="alert" >
+	<ul>
+		<% @product.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
 
+
+<%= form_for @product, html: {class: "form"}, url: {action: "store"} do |f| %>
+	<h1 class="teste"><%= @error %></h1>	
 	<div class="row">
 		<div class="form-group col-md-6">
 			<label>Product name:</label>

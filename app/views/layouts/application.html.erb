@@ -19,7 +19,7 @@
 
 	<%= form_tag search_products_path, method: :get, class: "navbar-form navbar-right" do %>
 		<div class="form-group">
-			<%= text_field_tag :s, nil, class: "form-control" %>
+			<%= text_field_tag :s, @search, class: "form-control" %>
 			<%= button_to "Search", nil, class: "btn btn-default" %>
 		</div>
 	<% end %>

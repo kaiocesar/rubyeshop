@@ -4,12 +4,18 @@ class ProductsController < ApplicationController
 	end
 
 	def create
+		@product = Product.new
 	end
 
 	def store
 		product_data = params.require(:product).permit :name, :price, :amount, :description
-		product = Product.create product_data
-		redirect_to "/products"
+		@product = Product.new product_data		
+		if @product.save
+			redirect_to "/products"
+		else
+			render :create
+		end
+
 	end
 	
 
@@ -31,8 +37,8 @@ class ProductsController < ApplicationController
 	end
 
 	def search
-		search = "%#{params[:s]}%"
-		@products = Product.where "name like ?", search
+		@search = params[:s]
+		@products = Product.where "name like ?", "%#{@search}%"
 	end
 
 end
